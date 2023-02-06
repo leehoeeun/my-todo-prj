@@ -96,6 +96,7 @@ const Wrapper = styled.div`
   /* max-width: 768px; */
   /* margin: 40px auto; */
   background-color: lightblue;
+  /* overflow-x: hidden; */  // TODO : Main만들고 주석 풀기
   /* height: 900px;   // TODO : 자식 css 작업 끝나고 삭제! */
   /* overflow-y: auto; */
   /* @media screen and (max-width:767px){

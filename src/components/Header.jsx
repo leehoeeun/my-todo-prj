@@ -25,16 +25,20 @@ const HeaderWrapper = styled.header`
 
 const Navigator = styled.nav`
   position: absolute;
-  top: 0px;
+  top: 100px;
+  right: 0px;
   width: 300px;
   height: 300px;
   background-color: lightcoral;
-  .show-menu {
-    right: 0px;
+
+  right: ${props => props.showMenu ? '0px' : '-100%'};
+  transition: 0.5s;
+  /* .show-menu {
+    display: block;
   }
   .hide-menu {
-    right: -100%;
-  }
+    display: none;
+  } */
 `;
 
 
@@ -43,11 +47,13 @@ function Header(props) {
   // navigation : state 상태에 담아서 showMenu가 true면 nav가 보이고,false면 nav가 안보이고
   const [showMenu, setShowMenu] = useState(false);
   const handleShow = () => {
-    if(showMenu) {
-      setShowMenu(false);
-    }else {
-      setShowMenu(true);
-    }
+    // if(showMenu) {
+    //   setShowMenu(false);
+    // }else {
+    //   setShowMenu(true);
+    // }
+
+    setShowMenu(!showMenu);
   }
 
   return (
@@ -58,7 +64,8 @@ function Header(props) {
           className='hamburger_menu'
           onClick={handleShow}
         />
-        <Navigator className={showMenu ? "show-menu" : "hide-menu"} />
+        {/* {showMenu && <Navigator />} */}
+        <Navigator showMenu={showMenu} />
       </HeaderWrapper>
     </>
   );
