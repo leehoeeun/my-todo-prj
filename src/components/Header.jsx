@@ -55,7 +55,7 @@ function Header(props) {
   
   // TODO : menus로 내려오는 정보대로 메뉴에 뿌려주기(map 써서)
   const { menus } = props;
-  console.log(menus);
+  // console.log(menus);
 
   // navigation : state 상태에 담아서 showMenu가 true면 nav가 보이고,false면 nav가 안보이고
   const [showMenu, setShowMenu] = useState(false);

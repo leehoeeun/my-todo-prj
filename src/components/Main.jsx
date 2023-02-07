@@ -14,12 +14,12 @@ const styles = {
 }
 
 function Main(props) {
-  const { categorys } = props;
+  const { categorys, todos, onToggle } = props;
   return (
     <>
       <h1 style={styles.mainTitle}>Your Weekly Plan!</h1>
       <Category categorys={categorys}/>
-      <TodoList />
+      <TodoList todos={todos} onToggle={onToggle} />
     </>
   );
 }

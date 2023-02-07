@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import reset, { Reset } from "styled-reset";
@@ -9,6 +9,7 @@ import Category from './components/Category';
 import Main from './components/Main';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import TodoListDetailPop from './components/TodoListDetailPop';
 
 
 
@@ -119,7 +120,7 @@ const App = props => {
       depth2s : ['지난주', '이번주', '다음주']
     },
   ]);
-  console.log(menus[0].depth2s);
+  // console.log(menus[0].depth2s);
 
   const categorys = [
     {
@@ -144,6 +145,83 @@ const App = props => {
       notyet: 4,
     },
   ];
+  const [todos, setTodos] = useState([
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 1,
+      title: '공부',
+      text: 'TODOLIST 만들기1',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다1-1',
+      buying: false,
+      checked: false,
+      important: 1,
+    },
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 1,
+      title: '교회',
+      text: '겨울 수련회 준비1',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다1-2',
+      buying: false,
+      checked: false,
+      important: 2,
+    },
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 2,
+      title: '공부',
+      text: 'TODOLIST 만들기2',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다2-1',
+      buying: false,
+      checked: false,
+      important: 1,
+    },
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 2,
+      title: '교회',
+      text: '겨울 수련회 준비2',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다2-2',
+      buying: false,
+      checked: false,
+      important: 5,
+    },
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 3,
+      title: '공부',
+      text: 'TODOLIST 만들기3',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다3-1',
+      buying: false,
+      checked: false,
+      important: 3,
+    },
+    {
+      id: uuidv4(),
+      month: 1,
+      week: 3,
+      title: '교회',
+      text: '겨울 수련회 준비3',
+      content: 'React로 todolist를 만들어 프로젝트를 완성한다3-2',
+      buying: false,
+      checked: false,
+      important: 4,
+    },
+  ]);
+  const handleToggle = useCallback((id) => {
+    setTodos(todos.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    ));
+    // TODO : 로컬 스토리지에 저장
+  //   localStorage.setItem('todos', JSON.stringify(todos.map((todo) =>
+  //   todo.id === id ? { ...todo, checked: !todo.checked } : todo
+  // )));
+  }, [todos]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -152,8 +230,9 @@ const App = props => {
       <Wrapper>
         <Header menus={menus} />
         <Routes>
-          <Route path='/' element={<Main categorys={categorys} />}/>
+          <Route path='/' element={<Main categorys={categorys} todos={todos} onToggle={handleToggle}/>}/>
           <Route path='/category' element={<Category />}/>
+          <Route path='/detail' element={<TodoListDetailPop />} />
         </Routes>
         <Footer />
       </Wrapper>

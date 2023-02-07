@@ -54,7 +54,7 @@ const styles = {
 
 function Category(props) {
   const { categorys } = props;
-  console.log(categorys);
+  // console.log(categorys);
   return (
     <>
       <div style={styles.categoryWrapper}>
