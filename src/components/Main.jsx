@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Category from './Category';
 import TodoList from './TodoList';
 
+
 const styles = {
   mainTitle: {
     fontSize: 24,
@@ -12,6 +13,7 @@ const styles = {
     fontWeight: 600,
   },
 }
+
 
 function Main(props) {
   const { categorys, todos, onToggle } = props;

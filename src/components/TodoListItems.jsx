@@ -57,8 +57,6 @@ function TodoListItems(props) {
       <Checkbox checked={checked} onClick={() => { onToggle(id); }} >
         {checked? <CheckOn /> : <CheckOff/>}
       </Checkbox>
-      
-      
       <p 
         className='title'
         onClick={() => { navigate('/detail') }}  // TODO: 리스트 box를 누르면 해당 관련 내용의 팝업이 나오도록 수정
