@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import reset, { Reset } from "styled-reset";
@@ -9,7 +9,6 @@ import Category from './components/Category';
 import Main from './components/Main';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
 
 
 
@@ -106,12 +105,28 @@ const Wrapper = styled.div`
 `;
 
 const App = props => {
+
+  // --------------메뉴---------------------------
+  const [ menus, setMenus ] = useState([
+    {
+      id: 1,
+      depth1 : '카테고리',
+      depth2s : ['공부', '교회일', '기타', '구매목록']
+    },
+    {
+      id: 1,
+      depth1 : '할 일',
+      depth2s : ['지난주', '이번주', '다음주']
+    },
+  ]);
+  console.log(menus[0].depth2s);
+
   return (
     <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
       <Wrapper>
-        <Header />
+        <Header menus={menus} />
         <Routes>
           <Route path='/' element={<Main />}/>
           <Route path='/category' element={<Category />}/>
