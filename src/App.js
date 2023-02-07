@@ -114,12 +114,36 @@ const App = props => {
       depth2s : ['공부', '교회일', '기타', '구매목록']
     },
     {
-      id: 1,
+      id: 2,
       depth1 : '할 일',
       depth2s : ['지난주', '이번주', '다음주']
     },
   ]);
   console.log(menus[0].depth2s);
+
+  const categorys = [
+    {
+      id: 1,
+      title: '공부',
+      total: 10,
+      finish: 7,
+      notyet: 3,
+    },
+    {
+      id: 2,
+      title: '교회일',
+      total: 5,
+      finish: 1,
+      notyet: 4,
+    },
+    {
+      id: 3,
+      title: '기타',
+      total: 8,
+      finish: 4,
+      notyet: 4,
+    },
+  ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -128,7 +152,7 @@ const App = props => {
       <Wrapper>
         <Header menus={menus} />
         <Routes>
-          <Route path='/' element={<Main />}/>
+          <Route path='/' element={<Main categorys={categorys} />}/>
           <Route path='/category' element={<Category />}/>
         </Routes>
         <Footer />

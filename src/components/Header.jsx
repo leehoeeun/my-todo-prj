@@ -53,6 +53,7 @@ const Navigator = styled.nav`
 
 function Header(props) {
   
+  // TODO : menus로 내려오는 정보대로 메뉴에 뿌려주기(map 써서)
   const { menus } = props;
   console.log(menus);
 
@@ -80,32 +81,20 @@ function Header(props) {
         <Navigator showMenu={showMenu}>
           <ul>
               <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">회사소개</a>
+                <a href="/" className="etc_gnb__ldepth">카테고리</a>
                 <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">인사말</a></li>
-                  <li><a href="#">후원사/협력사</a></li>
-                  <li><a href="#">연혁</a></li>
+                  <li><a href="#">공부</a></li>
+                  <li><a href="#">교회일</a></li>
+                  <li><a href="#">기타</a></li>
+                  <li><a href="#">구매목록</a></li>
                 </ul>
               </li>
               <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">행사소개</a>
+                <a href="/" className="etc_gnb__ldepth">할 일</a>
                 <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">전시회</a></li>
-                  <li><a href="#">포럼</a></li>
-                </ul>
-              </li>
-              <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">NEW소식</a>
-                <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">뉴스</a></li>
-                  <li><a href="#">공지사항</a></li>
-                </ul>
-              </li>
-              <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">오시는 길</a>
-                <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">찾아오시는 길</a></li>
-                  <li><a href="#">제휴문의</a></li>
+                  <li><a href="#">지난주 할 일</a></li>
+                  <li><a href="#">이번주 할 일</a></li>
+                  <li><a href="#">다음주 할 일</a></li>
                 </ul>
               </li>
             </ul>
