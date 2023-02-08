@@ -4,22 +4,21 @@ import Category from './Category';
 import TodoList from './TodoList';
 
 
-const styles = {
-  mainTitle: {
-    fontSize: 24,
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 20,
-    fontWeight: 600,
-  },
-}
+const Headerone = styled.h1`
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  font-weight: 600px;
+`;
+
 
 
 function Main(props) {
   const { categorys, todos, onToggle } = props;
   return (
     <>
-      <h1 style={styles.mainTitle}>Your Weekly Plan!</h1>
+      <Headerone>Your Weekly Plan!</Headerone>
       <Category categorys={categorys}/>
       <TodoList todos={todos} onToggle={onToggle} />
     </>

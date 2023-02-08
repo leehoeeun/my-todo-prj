@@ -1,94 +1,73 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const styles = {
-  categoryWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 30, 
-  },
-  categoryBox: {
-    width: 240,
-    height: 160,
-    color: '#fff',
-    padding: 20,
-    boxSizing: 'border-box',
-    backgroundColor: '#031956',
-    borderRadius: 20,
-  },
-  categorBoxCount: {
-    fontSize: '1.6rem',
-  },
-  categorBoxTitle: {
-    fontSize: '3.2rem',
-    paddingTop: 10,
-    paddingBottom: 20,
-  },
-  progressBar: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-    height: 8,
-    overflow: 'hidden',
-    borderRadius: 4,
-    // backgroundColor: '#fff',
-  },
-  progressBarFinish: {
-    // width: ({category.finish}/{category.total})*100,  
-    // TODO : (완료한 개수/총 개수) 비율대로 width값 나오도록 수정
-    width: '70%',
-    height: '100%',
-    backgroundColor: '#EB05FF',
-  },
-  progressBarNotyet: {
-    // width: {},  // TODO : (남은 개수/총 개수) 비율대로 width값 나오도록 수정
-    width: '30%',
-    height: '100%',
-    backgroundColor: '#fff',
-    opacity: 0.2,
-  },
-}
+
+const CategoryWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 30px; 
+`;
+
+
+const CategoryBox = styled.div`
+  width: 240px;
+  height: 160px;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #031956;
+  border-radius: 20px;
+  .category-count {
+    font-size: 1.6rem;
+  }
+  .category-title {
+    font-Size: 3.2rem;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  .progress-bar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .progress-bar--finish {
+    width: ${props => Number(props.finish/props.total*100)}%;
+    height: 100%;
+    background-color: #EB05FF;
+  }
+  .progress-bar--notyet {
+    width: ${props => Number(props.notyet/props.total*100)}%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.2;
+  }
+`; 
 
 function Category(props) {
   const { categorys } = props;
-  // console.log(categorys);
+  
   return (
     <>
-      <div style={styles.categoryWrapper}>
+      <CategoryWrapper>
         {categorys.map((category, index) => {
-          return(<div style={styles.categoryBox} key={category.id}>
-            <span style={styles.categorBoxCount}>{`${category.finish}/${category.total}개`}</span>
-            <p style={styles.categorBoxTitle}>{category.title}</p>
-            <div style={styles.progressBar}>
-              {/* <div style={styles.progressBarFinish}></div> */}
-              {/* <div style={styles.progressBarNotyet}></div> */}
-              <div 
-              // TODO: (질문) 혹시 직접 적용한 css와  위 styles에 담은 css를 동시에 적용시킬 수는 없나요? 
-                style={{ width: (category.finish/category.total)*200,
-                height: '100%',
-                backgroundColor: '#EB05FF',
-                }}
-              >
-              </div>
-              <div
-                style={{ width: (category.notyet/category.total)*200,
-                height: '100%',
-                backgroundColor: '#fff',
-                opacity: 0.2,
-                }}
-              >
-              </div>
+          console.log(category.finish/category.total)
+          return(<CategoryBox key={category.id} total={category.total} finish={category.finish} notyet={category.notyet}>
+            <span className='category-count'>{`${category.finish}/${category.total}개`}</span>
+            <p className='category-title'>{category.title}</p>
+            <div className='progress-bar'>
+              <div className='progress-bar--finish'></div>
+              <div className='progress-bar--notyet'></div>
             </div>
-          </div>
+          </CategoryBox>
           )})}
-        
-
-        {/* <div style={styles.categoryBox}></div>
-        <div style={styles.categoryBox}></div> */}
-      </div>
+      </CategoryWrapper>
     </>
   );
 }

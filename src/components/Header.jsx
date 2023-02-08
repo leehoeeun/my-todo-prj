@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 import { MdClear, MdMenu as MenuIcon } from "react-icons/md";
 import Logo from './Logo';
+import { Link } from 'react-router-dom';
 
 
 const HeaderWrapper = styled.header`
@@ -33,13 +34,13 @@ const HeaderWrapper = styled.header`
 `;
 
 const Navigator = styled.nav`
-  position: absolute;
+  position: fixed;
+  z-index: 99;
   top: 0px;
   right: 0px;
   width: 300px;
   height: 700px;  // TODO: nav 내용 채우면 삭제
   background-color: lightcoral;
-
   right: ${props => props.showMenu ? '0px' : '-100%'};
   transition: 0.5s;
   /* .show-menu {
@@ -81,20 +82,20 @@ function Header(props) {
         <Navigator showMenu={showMenu}>
           <ul>
               <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">카테고리</a>
+                <Link to="/category" className="etc_gnb__ldepth">카테고리</Link>
                 <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">공부</a></li>
-                  <li><a href="#">교회일</a></li>
-                  <li><a href="#">기타</a></li>
-                  <li><a href="#">구매목록</a></li>
+                  <li><Link to="/category/study">공부</Link></li>
+                  <li><Link to="/category/church">교회일</Link></li>
+                  <li><Link to="/category/etc">기타</Link></li>
+                  <li><Link to="/category/buyList">구매목록</Link></li>
                 </ul>
               </li>
               <li className="etc_gnb__wrap">
-                <a href="/" className="etc_gnb__ldepth">할 일</a>
+                <Link to="/todolist" className="etc_gnb__ldepth">할 일</Link>
                 <ul className="etc_gnb__2depth_wrap">
-                  <li><a href="#">지난주 할 일</a></li>
-                  <li><a href="#">이번주 할 일</a></li>
-                  <li><a href="#">다음주 할 일</a></li>
+                  <li><Link to="todolist/lastweek">지난주 할 일</Link></li>
+                  <li><Link to="todolist/thisweek">이번주 할 일</Link></li>
+                  <li><Link to="todolist/nextweek">다음주 할 일</Link></li>
                 </ul>
               </li>
             </ul>

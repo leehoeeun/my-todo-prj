@@ -41,6 +41,7 @@ const theme = {
   cyan: '#39afd1',
   bodyBg: '#f4f5f6',
 };
+
 const Button = styled.button`
   font-size: 1em;
   margin: 1em;
@@ -52,7 +53,7 @@ const Button = styled.button`
   border: 2px solid ${props => props.theme.main};
 `;
 
-// We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
+// // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
 Button.defaultProps = {
   theme: {
     main: "palevioletred"
@@ -82,23 +83,9 @@ const GlobalStyle = createGlobalStyle`
   display: block;
   }
 `;
-const StyledButton = styled.button`
-  border: none;
-  background: #868e96;
-  color: white;
-  padding: 0 1rem;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
 const Wrapper = styled.div`
-  /* max-width: 768px; */
-  /* margin: 40px auto; */
   background-color: lightblue;
-  /* overflow-x: hidden; */  // TODO : Main만들고 주석 풀기
-  /* height: 900px;   // TODO : 자식 css 작업 끝나고 삭제! */
-  /* overflow-y: auto; */
+  overflow-x: hidden;  // TODO : Main만들고 주석 풀기
   /* @media screen and (max-width:767px){
     width: 100%;
     margin: 0px;
@@ -224,7 +211,9 @@ const App = props => {
   }, [todos]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider 
+      theme={theme}
+    >
       <Reset />
       <GlobalStyle />
       <Wrapper>
