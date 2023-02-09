@@ -46,7 +46,7 @@ const PlusTodoListButton = styled.div`
 `;
 
 function TodoList(props) {
-  const {todos, onToggle} = props;
+  const {todos, onToggle, onInsert} = props;
   const [plusTodoListModalOn, setPlusTodoListModalOn] = useState(false);
 
   return (
@@ -62,7 +62,7 @@ function TodoList(props) {
           <div className='line-ver'></div>
           <div className='line-hor'></div>
         </PlusTodoListButton>
-        <PlusTodoListModal show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)}/>
+        <PlusTodoListModal show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)} onInsert={onInsert} />
       </TodoListWrapper>
     </>
   );

@@ -137,7 +137,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 1,
-      title: '공부',
+      title: 'c-study',
       text: 'TODOLIST 만들기1',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다1-1',
       buying: false,
@@ -148,7 +148,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 1,
-      title: '교회',
+      title: 'c-church',
       text: '겨울 수련회 준비1',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다1-2',
       buying: false,
@@ -159,7 +159,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 2,
-      title: '공부',
+      title: 'c-study',
       text: 'TODOLIST 만들기2',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다2-1',
       buying: false,
@@ -170,7 +170,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 2,
-      title: '교회',
+      title: 'c-church',
       text: '겨울 수련회 준비2',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다2-2',
       buying: false,
@@ -181,7 +181,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 3,
-      title: '공부',
+      title: 'c-study',
       text: 'TODOLIST 만들기3',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다3-1',
       buying: false,
@@ -192,7 +192,7 @@ const App = props => {
       id: uuidv4(),
       month: 1,
       week: 3,
-      title: '교회',
+      title: 'c-church',
       text: '겨울 수련회 준비3',
       content: 'React로 todolist를 만들어 프로젝트를 완성한다3-2',
       buying: false,
@@ -200,6 +200,8 @@ const App = props => {
       important: 4,
     },
   ]);
+
+  // -------------------checkbox checked Toggle 기능----------------------
   const handleToggle = useCallback((id) => {
     setTodos(todos.map((todo) =>
       todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -208,6 +210,30 @@ const App = props => {
   //   localStorage.setItem('todos', JSON.stringify(todos.map((todo) =>
   //   todo.id === id ? { ...todo, checked: !todo.checked } : todo
   // )));
+  }, [todos]);
+
+  // -------------------submit할 때 추가 되도록 하는 코드----------------------
+  const handleInsert = useCallback((data) => {
+    const { month, week, title, text, content, buying, important } = data;
+    
+    const todo = {
+      id: uuidv4(),
+      month,
+      week,
+      title,
+      text,
+      content,
+      buying,
+      checked: false,
+      important,
+    };
+
+    setTodos(todos.concat(todo));
+
+    // TODO : 마지막에 주석 풀기
+    // 로컬 스토리지에 저장  // ('이름', JSON 문자로 변경)
+    // localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
+    // 배열을 JSON으로 변경필요!
   }, [todos]);
 
   return (
@@ -219,7 +245,7 @@ const App = props => {
       <Wrapper>
         <Header menus={menus} />
         <Routes>
-          <Route path='/' element={<Main categorys={categorys} todos={todos} onToggle={handleToggle}/>}/>
+          <Route path='/' element={<Main categorys={categorys} todos={todos} onToggle={handleToggle} onInsert={handleInsert} />}/>
           <Route path='/category' element={<Category />}/>
           <Route path='/detail' element={<TodoListDetailPop />} />
         </Routes>

@@ -15,12 +15,12 @@ const Headerone = styled.h1`
 
 
 function Main(props) {
-  const { categorys, todos, onToggle } = props;
+  const { categorys, todos, onToggle, onInsert } = props;
   return (
     <>
       <Headerone>Your Weekly Plan!</Headerone>
       <Category categorys={categorys}/>
-      <TodoList todos={todos} onToggle={onToggle} />
+      <TodoList todos={todos} onToggle={onToggle} onInsert={onInsert} />
     </>
   );
 }
