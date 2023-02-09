@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 // import PlusTodoListButton from './PlusTodoListButton';
 import TodoListDetailPop from './TodoListDetailPop';
 import TodoListItems from './TodoListItems';
 import PlusTodoListModal from "../modals/PlusTodoListModal"; 
+import { useCallback } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const TodoListWrapper = styled.div`
@@ -48,6 +50,19 @@ const PlusTodoListButton = styled.div`
 function TodoList(props) {
   const {todos, onToggle} = props;
   const [plusTodoListModalOn, setPlusTodoListModalOn] = useState(false);
+  console.log(props)
+  
+  const nextId = useRef(4);
+  const handleInsert = useCallback((text) => {
+    const todo = {
+      id: uuidv4(),
+      text,
+      checked: false,
+    };
+    setTodos(todos.concat(todo)); 
+    nextId.current += 1;
+    localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
+  }, [todos]);
 
   return (
     <>
@@ -62,7 +77,7 @@ function TodoList(props) {
           <div className='line-ver'></div>
           <div className='line-hor'></div>
         </PlusTodoListButton>
-        <PlusTodoListModal show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)}/>
+        <PlusTodoListModal onInsert={handleInsert} show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)}/>
       </TodoListWrapper>
     </>
   );

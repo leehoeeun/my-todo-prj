@@ -16,6 +16,7 @@ const Headerone = styled.h1`
 
 function Main(props) {
   const { categorys, todos, onToggle } = props;
+  console.log(props);
   return (
     <>
       <Headerone>Your Weekly Plan!</Headerone>

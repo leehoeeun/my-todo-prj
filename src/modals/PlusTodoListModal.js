@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button, Form, Container } from "react-bootstrap";
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const SelectWrapper = styled.div`
   display: flex;
@@ -46,8 +47,29 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const PlusTodoListModal = ({ show, onHide }) => {
+const PlusTodoListModal = ({ show, onHide, onInsert }) => {
   console.log(onHide);
+
+  const [value, setValue] = useState('');
+
+  const hadleChange = (e) => {
+    setValue(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    onInsert(value);
+    setValue('');
+    e.preventDefault();
+  };
+
+
+
+
+
+
+
+
+
   return (
     <Container>
       <Modal
@@ -56,6 +78,7 @@ const PlusTodoListModal = ({ show, onHide }) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        onSubmit={handleSubmit}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -66,7 +89,7 @@ const PlusTodoListModal = ({ show, onHide }) => {
           <Form>
           <Form.Label>Select Your Plan Month/Weekly</Form.Label>
           <SelectWrapper>
-            <Form.Select size="lg" className='plan-date' aria-label="Default select example">
+            <Form.Select size="lg" className='plan-date' aria-label="Default select example" onChange={hadleChange}>
               <option>Month</option>
               <option value="1">1월</option>
               <option value="2">2월</option>
@@ -81,7 +104,7 @@ const PlusTodoListModal = ({ show, onHide }) => {
               <option value="11">11월</option>
               <option value="12">12월</option>
             </Form.Select>
-            <Form.Select className='plan-date' aria-label="Default select example">
+            <Form.Select className='plan-date' aria-label="Default select example" onChange={hadleChange}>
               <option>Weekly</option>
               <option value="1">1주</option>
               <option value="2">2주</option>
@@ -93,31 +116,31 @@ const PlusTodoListModal = ({ show, onHide }) => {
 
           <InputWrapper>
             <CategoryWrapper>
-              <Form.Label>Select Your Plan Category</Form.Label>
-              <Form.Select className='plan-category' aria-label="Default select example">
+              <Form.Label className='my-3'>Select Your Plan Category</Form.Label>
+              <Form.Select className='plan-category' aria-label="Default select example" onChange={hadleChange}>
                 <option>카테고리</option>
                 <option value="study">공부</option>
                 <option value="church">교회일</option>
                 <option value="etc">기타</option>
               </Form.Select>
             </CategoryWrapper>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3 my-3" controlId="formBasicEmail">
               <Form.Label>Todo Content</Form.Label>
-              <Form.Control className='input-box' type="text" placeholder="Enter Plan Title" />
+              <Form.Control className='input-box' type="text" placeholder="Enter Plan Title" onChange={hadleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Label>Example textarea</Form.Label>
-              <Form.Control className='textarea-box' as="textarea" rows={3} placeholder="Enter Plan Detail"/>
+              <Form.Control className='textarea-box' as="textarea" rows={3} placeholder="Enter Plan Detail" onChange={hadleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
+              <Form.Check type="checkbox" label="Check me out" onChange={hadleChange} />
             </Form.Group>
           </InputWrapper>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <ButtonWrapper>
-            <Button className='submit-button button' variant="primary" type="button">
+            <Button className='submit-button button' variant="primary" type="submit">
               Submit
             </Button>
             <Button className='close-button button' onClick={onHide}>Close</Button>
