@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Container } from "react-bootstrap";
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const SelectWrapper = styled.div`
   display: flex;
@@ -94,6 +95,8 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
 
   console.log(state);
 
+
+
   return (
     <Container>
       <Modal
@@ -102,6 +105,7 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        onSubmit={handleSubmit}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -112,12 +116,14 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
           <Form>
           <Form.Label>Select Your Plan Month/Weekly</Form.Label>
           <SelectWrapper>
+
             <Form.Select 
               size="lg" className='plan-date'
               aria-label="Default select example"
               value={state.month}
               onChange={handleChange} name="month"
             >
+
               <option>Month</option>
               <option value="january">1월</option>
               <option value="february">2월</option>
@@ -132,6 +138,7 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
               <option value="november">11월</option>
               <option value="december">12월</option>
             </Form.Select>
+
             <Form.Select 
               className='plan-date' 
               aria-label="Default select example" 
@@ -150,6 +157,7 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
 
           <InputWrapper>
             <CategoryWrapper>
+
               <Form.Label>Select Your Plan Category</Form.Label>
               <Form.Select 
                 className='plan-category' 
@@ -164,8 +172,9 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
                 <option value="c-etc">기타</option>
               </Form.Select>
             </CategoryWrapper>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3 my-3" controlId="formBasicEmail">
               <Form.Label>Todo Content</Form.Label>
+
               <Form.Control 
                 className='input-box' 
                 type="text" placeholder="Enter Plan Title" 
@@ -192,6 +201,7 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
                 checked={state.buying}
                 onChange={handleToggle}
               />
+
             </Form.Group>
             <Form.Select 
               size="lg" className='plan-date' 
@@ -212,6 +222,7 @@ const PlusTodoListModal = ({ show, onHide, onInsert }) => {
         </Modal.Body>
         <Modal.Footer>
           <ButtonWrapper>
+
             <Button 
               className='submit-button button' 
               variant="primary" type="button" 
