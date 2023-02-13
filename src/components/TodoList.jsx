@@ -61,7 +61,7 @@ function TodoList(props) {
     };
     // setTodos(todos.concat(todo)); 
     // nextId.current += 1;
-    // localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
+    localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
   }, [todos]);
 
   return (
@@ -72,7 +72,7 @@ function TodoList(props) {
           return <TodoListItems key={todo.id} todo={todo} onToggle={onToggle} />
         })}
         <PlusTodoListButton
-          onClick={() => setPlusTodoListModalOn(true)} 
+          onClick={() => setPlusTodoListModalOn(true)}
         >
           <div className='line-ver'></div>
           <div className='line-hor'></div>
