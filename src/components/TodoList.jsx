@@ -78,7 +78,7 @@ function TodoList(props) {
           <div className='line-hor'></div>
         </PlusTodoListButton>
 
-        <PlusTodoListModal onInsert={handleInsert} show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)}/>
+        <PlusTodoListModal onInsert={onInsert} show={plusTodoListModalOn} onHide={()=> setPlusTodoListModalOn(false)}/>
 
       </TodoListWrapper>
     </>
