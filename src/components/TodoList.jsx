@@ -59,9 +59,9 @@ function TodoList(props) {
       text,
       checked: false,
     };
-    setTodos(todos.concat(todo)); 
-    nextId.current += 1;
-    localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
+    // setTodos(todos.concat(todo)); 
+    // nextId.current += 1;
+    // localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
   }, [todos]);
 
   return (

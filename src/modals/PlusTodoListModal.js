@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Container } from "react-bootstrap";
 import styled from 'styled-components';
-import { useState } from 'react';
 
 const SelectWrapper = styled.div`
   display: flex;
