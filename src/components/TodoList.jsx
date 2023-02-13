@@ -52,7 +52,7 @@ function TodoList(props) {
   const [plusTodoListModalOn, setPlusTodoListModalOn] = useState(false);
   console.log(props)
   
-  const nextId = useRef(4);
+  // const nextId = useRef(4);
   const handleInsert = useCallback((text) => {
     const todo = {
       id: uuidv4(),
@@ -61,7 +61,7 @@ function TodoList(props) {
     };
     // setTodos(todos.concat(todo)); 
     // nextId.current += 1;
-    localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
+    // localStorage.setItem('todos', JSON.stringify(todos.concat(todo)))
   }, [todos]);
 
   return (
